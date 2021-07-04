@@ -79,6 +79,7 @@ def get_data(amount):
 def get_block(block_id):
     global top_hash
     data = ""
+    previous_hash = ""
     top_hash_local = top_hash
     f = open("steps.txt", "r")
     lines = f.readlines()
@@ -98,8 +99,10 @@ def get_block(block_id):
         if this_id == block_id:
             condition = False
             data = my_response_data[3][:2352]
+        previous_hash = top_hash_local
         top_hash_local = my_response_data[1][-46:]
 
+    print("Found block", previous_hash)
     return data
 
 
@@ -110,6 +113,6 @@ f = open("top_hash.txt", "r")
 top_hash = f.read()
 f.close()
 
-send_data(2)
-# data = get_data(4)
-# print(to_list(get_block(2)))
+# send_data(10)
+# data = get_data(5)
+block = get_block(2)
