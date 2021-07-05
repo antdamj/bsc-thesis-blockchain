@@ -65,14 +65,14 @@ def get_data(amount):
         )
         response = requests.post('https://ipfs.infura.io:5001/api/v0/block/get', params=params)
         my_response_data = response.text.split('\n')
-        print("Recieved", top_hash_local)
+        print("Received", top_hash_local)
         top_hash_local = my_response_data[1][-46:]
         retrieved_data.append(my_response_data[3][:2352])
         i += 1
         if not top_hash_local.startswith("Qm"):
             break
     end = datetime.now()
-    print("Data receival done after", (end - start), len(retrieved_data), "items recieved.")
+    print("Data receival done after", (end - start), len(retrieved_data), "items received.")
     return retrieved_data
 
 
